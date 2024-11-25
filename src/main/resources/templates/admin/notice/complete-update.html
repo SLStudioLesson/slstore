@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{admin/layouts/base :: layout(~{::title},~{::body/content()})}">
+
+<head>
+    <title>お知らせ更新完了</title>
+</head>
+
+<body>
+    <div class="content">
+        <h1>お知らせ更新完了</h1>
+        <div class="form-container">
+            <form th:object="${noticeForm}">
+                <div class="form-group">
+                    <label>タイトル</label>
+                    <input type="text" th:field="*{title}" readonly>
+                </div>
+                <div class="form-group">
+                    <label>内容</label>
+                    <textarea th:field="*{content}" readonly></textarea>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{customer/layouts/base :: layout(~{::title},~{::body/content()})}">
+
+<head>
+    <title>マイページ詳細</title>
+</head>
+
+<body>
+    <div class="account-detail-wrapper">
+        <h1>マイアカウント</h1>
+        
+        <div class="account-summary">
+            <div class="account-rank">
+                <span>現在のランク:</span>
+                <span>プラチナ会員</span>
+            </div>
+            <div class="account-stat">
+                <span class="account-stat-label">アカウント登録日:</span>
+                <span>2022-10-15</span>
+            </div>
+            <div class="account-stat">
+                <span class="account-stat-label">総購入金額:</span>
+                <span>250,000</span>
+            </div>
+            <div class="account-stat">
+                <span class="account-stat-label">次のランクまで:</span>
+                <span>50,000</span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

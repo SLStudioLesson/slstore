@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{customer/layouts/base :: layout(~{::title},~{::body/content()})}">
+
+<head>
+    <title>カート - SLストア</title>
+</head>
+
+<body>
+    <div class="cart-wrapper">
+        <!-- パンくずリスト -->
+        <nav class="breadcrumb">
+            <ol>
+                <li><a href="/">ホーム</a></li>
+                <li>カート</li>
+            </ol>
+        </nav>
+
+        <div class="cart-container">
+            <h1 class="cart-title">ショッピングカート</h1>
+
+            <!-- カートが空の場合 -->
+            <div th:if="${cart.items.isEmpty()}" class="cart-empty">
+                <p>カートに商品がありません</p>
+                <a th:href="@{/shop/product/index}" class="btn-continue-shopping">
+                    <i class="fas fa-arrow-left"></i>
+                    買い物を続ける
+                </a>
+            </div>
+
+            <!-- カートに商品がある場合 -->
+            <div th:unless="${cart.items.isEmpty()}" class="cart-row">
+                <!-- 商品一覧 -->
+                <div class="cart-items">
+                    <div th:each="item : ${cart.items}" class="cart-item">
+                        <div class="item-image">
+                            <img th:src="${item.product.mainImageUrl}" th:alt="${item.product.name}">
+                        </div>
+                        <div class="item-details">
+                            <h3 class="item-name" th:text="${item.product.name}">商品名</h3>
+                            <p class="item-brand" th:text="${item.product.brand.name}">ブランド名</p>
+                            <p class="item-price" th:text="${'¥' + item.product.price}">¥2000</p>
+                        </div>
+                        <div class="item-quantity">
+                            <div class="quantity-control-group">
+                                <div class="quantity-input-group">
+                                    <button type="button" class="quantity-btn minus">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <input type="number" 
+                                        th:value="${item.quantity}" 
+                                        min="1" 
+                                        class="quantity-input">
+                                    <button type="button" class="quantity-btn plus">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                                <button class="btn-update-item" th:data-id="${item.product.id}">
+                                    <i class="fas fa-sync"></i>
+                                </button>
+                            </div>
+                            <!-- ここにレスポンスのメッセージを表示する -->
+                            <div class="update-message"></div>
+                        </div>
+                        <div class="item-subtotal">
+                            <p th:text="${'¥' + (item.product.price * item.quantity)}">小計</p>
+                        </div>
+                        <div class="item-remove">
+                            <button class="btn-remove" th:data-id="${item.product.id}">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 合計金額 -->
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span>商品合計</span>
+                        <span th:text="${'¥' + cart.totalAmount}">¥2000</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>送料</span>
+                        <span>無料</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>合計</span>
+                        <span th:text="${'¥' + cart.totalAmount}">¥2000</span>
+                    </div>
+                    <button class="btn-checkout">
+                        レジに進む
+                    </button>
+                    <a th:href="@{/shop/product/index}" class="btn-continue-shopping">
+                        <i class="fas fa-arrow-left"></i>
+                        買い物を続ける
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- モーダルのHTML（cart-list.htmlに追加） -->
+    <div class="modal" id="update-modal">
+        <div class="modal-content">
+            <div class="modal-message"></div>
+            <div class="modal-buttons">
+                <a th:href="@{/shop/cart/index}" class="btn-reload">
+                    <i class="fas fa-sync"></i>
+                    カート画面を最新にする
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{/js/customer/shop/cart_list.js}"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>edit book form</title>
+</head>
+
+<body>
+    <form th:action="@{/practice/edit/book}" th:method="post" th:object="${book}">
+        <input type="hidden" th:field="*{id}">
+        <div>
+            <label>タイトル</label>
+            <input type="text" th:field="*{title}">
+        </div>
+        <div>
+            <label>著者名</label>
+            <input type="text" th:field="*{author}">
+        </div>
+        <input type="submit" value="編集">
+    </form>
+</body>
+
+</html>

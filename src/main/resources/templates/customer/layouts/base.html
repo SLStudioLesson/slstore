@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(title, contents)">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="_csrf_header" th:if="${_csrf != null}" th:content="${_csrf.headerName}"/>
+    <meta name="_csrf" th:if="${_csrf != null}" th:content="${_csrf.token}"/>
+
+    <title th:replace="${title}">aaa</title>
+
+    <link rel="stylesheet" th:href="@{/css/customer/style.css}" href="../../../static/css/customer/style.css">
+    <script defer src="https://kit.fontawesome.com/4bd37a4f05.js" crossorigin="anonymous"></script>
+    <script th:src="@{/js/customer/script.js}"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="top-banner">
+                送料無料キャンペーン中！
+            </div>
+            <div class="main-header">
+                <div class="logo">
+                    <a th:href="@{/}">
+                        <img th:src="@{/images/logo.svg}" alt="SLストア" class="logo-image">
+                    </a>
+                </div>
+                <div class="search-bar">
+                    <form th:action="@{/shop/product/search}" th:object="${productSearchForm}">
+                        <select class="category-selector" th:field="*{categoryId}">
+                            <option th:value="0">すべて</option>
+                            <option th:each="category : ${headerCategories}" th:value="${category.id}" th:text="${category.name}">カテゴリー名</option>
+                        </select>
+                        <input class="input-product-name" th:field="*{name}" type="text" placeholder="すべてのカテゴリから検索">
+                        <button type="submit">検索</button>
+                    </form>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#"><i class="far fa-heart"></i>お気に入り</a></li>
+                        <li><a th:href="@{/shop/cart/index}"><i class="fas fa-shopping-cart"></i>カート</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="sub-header">
+                <!-- HTMLの修正箇所 -->
+                <div class="brand-dropdown">
+                    <button class="brand-dropbtn">
+                        ブランドで商品を探す
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="brand-dropdown-content">
+                        <th:block th:each="brand : ${headerBrands}">
+                            <a th:href="@{/shop/brand/{brandId}/products(brandId=${brand.id})}" th:text="${brand.name}"></a>
+                        </th:block>
+                    </div>
+                </div>
+                <div class="user-summary">
+                    <span th:text="${greeting}"></span>
+                    <span class="points">利用可能ポイント 0 pt</span>
+                    <span class="mypage-link">マイページ</span>
+                </div>
+            </div>
+        </header>
+        <th:block th:replace="${contents}"></th:block>
+        <footer>
+        </footer>
+    </div>
+</body>
+
+</html>

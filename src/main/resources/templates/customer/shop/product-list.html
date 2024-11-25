@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{customer/layouts/base :: layout(~{::title},~{::body/content()})}">
+
+<head>
+    <title>商品一覧</title>
+</head>
+
+<body>
+    <div class="product-list-wrapper">
+        <h1>商品を探す</h1>
+
+        <div class="search-result">
+            <p class="result-count">
+                <!-- productsテーブルのデータ数を表示する -->
+                検索結果: <span>20</span>件
+            </p>
+        </div>
+
+        <!-- 商品一覧表示部分 -->
+        <div class="products-grid">
+            <!-- 以下の要素を繰り返し表示する -->
+            <div class="product-card">
+                <div class="product-image">
+                    <!-- productsテーブルのmain_image_urlカラムのURLを設定する -->
+                    <img alt="商品画像">
+                </div>
+                <div class="product-info">
+                    <!-- productsテーブルのnameカラムを表示する -->
+                    <h3>商品名</h3>
+                    <p class="product-price">
+                        <!-- productsテーブルのpriceカラムを表示する -->
+                        ¥<span>10,000</span>
+                    </p>
+                    <div class="product-stats">
+                        <span class="stats-item">
+                            <i class="fas fa-store"></i>
+                            <!-- brandsテーブルのnameカラムを表示する -->
+                            ブランド: <span>ブランド名</span>
+                        </span>
+                        <span class="stats-item">
+                            <i class="fas fa-star"></i>
+                            <!-- JOINしたuser_favorite_productsテーブルのデータ数を表示する -->
+                            お気に入り数: <span>××</span>
+                        </span>
+                    </div>
+                    <!-- productsテーブルのidカラムを、商品詳細画面のURLに埋め込む -->
+                    <a class="product-detail-link">商品詳細へ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

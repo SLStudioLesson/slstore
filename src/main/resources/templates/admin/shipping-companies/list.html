@@ -1,0 +1,79 @@
+<!-- src/main/resources/templates/admin/shipping-companies/list.html -->
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{admin/layouts/base :: layout(~{::title},~{::body/content()})}">
+<head>
+    <title>配送業者管理</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">配送業者管理</h1>
+            
+            <!-- アラートメッセージ -->
+            <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+                <span th:text="${successMessage}"></span>
+            </div>
+            
+            <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                <span th:text="${errorMessage}"></span>
+            </div>
+            
+            <!-- 新規登録ボタン -->
+            <div class="mb-4">
+                <a th:href="@{/admin/shipping-companies/create}" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> 新規登録
+                </a>
+            </div>
+            
+            <!-- 配送業者一覧テーブル -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-truck me-1"></i>
+                    配送業者一覧
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>配送業者名</th>
+                                <th>連絡先</th>
+                                <th>配送日数</th>
+                                <th>ステータス</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="company : ${companies}">
+                                <td th:text="${company.name}"></td>
+                                <td th:text="${company.contactPhone}"></td>
+                                <td th:text="${company.deliveryDaysRange}"></td>
+                                <td>
+                                    <span th:if="${company.isActive}" class="badge bg-success">有効</span>
+                                    <span th:unless="${company.isActive}" class="badge bg-danger">無効</span>
+                                </td>
+                                <td>
+                                    <a th:href="@{/admin/shipping-companies/edit/{id}(id=${company.id})}" 
+                                       class="btn btn-sm btn-primary">
+                                        <i class="fas fa-edit"></i> 編集
+                                    </a>
+                                    <form th:action="@{/admin/shipping-companies/delete/{id}(id=${company.id})}" 
+                                          method="post" class="d-inline"
+                                          onsubmit="return confirm('本当に無効にしますか？');">
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            <i class="fas fa-trash"></i> 無効化
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <tr th:if="${#lists.isEmpty(companies)}">
+                                <td colspan="5" class="text-center">配送業者が登録されていません。</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

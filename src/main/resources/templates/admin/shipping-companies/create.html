@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{admin/layouts/base :: layout(~{::title},~{::body/content()})}">
+<head>
+    <title>配送業者新規登録</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="container-fluid px-4">
+            <!-- ヘッダー部分 -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="mt-4">配送業者新規登録</h1>
+                <a th:href="@{/admin/shipping-companies}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> 一覧に戻る
+                </a>
+            </div>
+
+            <!-- アラートメッセージ -->
+            <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                <span th:text="${errorMessage}"></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            <!-- フォームカード -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-truck me-1"></i>
+                    配送業者情報入力
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/admin/shipping-companies/create}"
+                          th:object="${shippingCompanyDto}" 
+                          method="post">
+
+                        <!-- 配送業者名 -->
+                        <div class="mb-3">
+                            <label for="name" class="form-label">配送業者名 <span class="text-danger">*</span></label>
+                            <input type="text" 
+                                   class="form-control" 
+                                   th:class="${#fields.hasErrors('name')} ? 'form-control is-invalid' : 'form-control'"
+                                   id="name" 
+                                   th:field="*{name}">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
+                                配送業者名は必須です
+                            </div>
+                        </div>
+
+                        <!-- 追跡URL形式 -->
+                        <div class="mb-3">
+                            <label for="trackingUrlFormat" class="form-label">追跡URL形式</label>
+                            <input type="text" 
+                                   class="form-control" 
+                                   th:class="${#fields.hasErrors('trackingUrlFormat')} ? 'form-control is-invalid' : 'form-control'"
+                                   id="trackingUrlFormat" 
+                                   th:field="*{trackingUrlFormat}">
+                            <div class="form-text">例: https://example.com/tracking/{tracking_number}</div>
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('trackingUrlFormat')}" th:errors="*{trackingUrlFormat}">
+                                追跡URLの形式が正しくありません
+                            </div>
+                        </div>
+
+                        <!-- 連絡先電話番号 -->
+                        <div class="mb-3">
+                            <label for="contactPhone" class="form-label">連絡先電話番号</label>
+                            <input type="tel" 
+                                   class="form-control" 
+                                   th:class="${#fields.hasErrors('contactPhone')} ? 'form-control is-invalid' : 'form-control'"
+                                   id="contactPhone" 
+                                   th:field="*{contactPhone}">
+                            <div class="form-text">例: 03-1234-5678</div>
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('contactPhone')}" th:errors="*{contactPhone}">
+                                電話番号の形式が正しくありません
+                            </div>
+                        </div>
+
+                        <!-- 最小配送日数 -->
+                        <div class="mb-3">
+                            <label for="deliveryDaysMin" class="form-label">最小配送日数 <span class="text-danger">*</span></label>
+                            <input type="number" 
+                                   class="form-control" 
+                                   th:class="${#fields.hasErrors('deliveryDaysMin')} ? 'form-control is-invalid' : 'form-control'"
+                                   id="deliveryDaysMin" 
+                                   th:field="*{deliveryDaysMin}" 
+                                   min="1" 
+                                   max="30">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('deliveryDaysMin')}" th:errors="*{deliveryDaysMin}">
+                                最小配送日数は1-30の範囲で入力してください
+                            </div>
+                        </div>
+
+                        <!-- 最大配送日数 -->
+                        <div class="mb-3">
+                            <label for="deliveryDaysMax" class="form-label">最大配送日数 <span class="text-danger">*</span></label>
+                            <input type="number" 
+                                   class="form-control" 
+                                   th:class="${#fields.hasErrors('deliveryDaysMax')} ? 'form-control is-invalid' : 'form-control'"
+                                   id="deliveryDaysMax" 
+                                   th:field="*{deliveryDaysMax}" 
+                                   min="1" 
+                                   max="30">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('deliveryDaysMax')}" th:errors="*{deliveryDaysMax}">
+                                最大配送日数は1-30の範囲で入力してください
+                            </div>
+                        </div>
+
+                        <!-- アクティブステータス -->
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" 
+                                   class="form-check-input" 
+                                   id="isActive" 
+                                   th:field="*{isActive}">
+                            <label class="form-check-label" for="isActive">有効にする</label>
+                        </div>
+
+                        <!-- 送信ボタン -->
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a th:href="@{/admin/shipping-companies}" class="btn btn-secondary me-md-2">キャンセル</a>
+                            <button type="submit" class="btn btn-primary">保存</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

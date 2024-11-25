@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{customer/layouts/base :: layout(~{::title},~{::body/content()})}">
+
+<head>
+    <title>ブランド一覧</title>
+</head>
+
+<body>
+    <div class="content">
+        <h1>ブランド一覧</h1>
+        <div>
+            <div class="search-container">
+                <form th:action="@{/shop/brand/search}" th:method="get" th:object="${brandForm}" class="search-form">
+                    <div class="form-group">
+                        <label for="searchInput">検索ワード</label>
+                        <div class="search-input-group">
+                            <input type="text" th:field="*{name}" id="searchInput" class="form-control" placeholder="検索キーワードを入力">
+                            <button type="submit" class="btn btn-primary search-btn">検索</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <table class="brand-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>名前</th>
+                        <th>説明</th>
+                        <th>お気に入り</th>
+                        <th>お気に入り数</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="brand-row" th:each="brand : ${brands}">
+                        <td th:text="${brand.id}" class="brand-id"></td>
+                        <td th:text="${brand.name}" class="brand-name"></td>
+                        <td th:text="${brand.description}" class="brand-description"></td>
+                        <td>
+                            <button class="favorite-btn" th:data-id="${brand.id}">お気に入り</button>
+                        </td>
+                        <td class="favorite-count">お気に入り追加した人数: <span>0</span>人</td>
+                        <td>
+                            <a th:href="@{/shop/brand/{id}(id=${brand.id})}" class="btn btn-primary">詳細</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

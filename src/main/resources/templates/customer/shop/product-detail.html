@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{customer/layouts/base :: layout(~{::title},~{::body/content()})}">
+
+<head>
+    <title>シンプルTシャツ - 商品詳細</title>
+</head>
+
+<body>
+    <div class="product-detail-wrapper">
+        <!-- パンくずリスト -->
+        <nav class="breadcrumb">
+            <ol>
+                <li><a href="/">ホーム</a></li>
+                <li><a href="/shop/product/index">商品一覧</a></li>
+                <li>シンプルTシャツ</li>
+            </ol>
+        </nav>
+
+        <div class="product-detail-container">
+            <!-- 商品メイン情報 -->
+            <div class="product-main">
+                <!-- 商品画像セクション -->
+                <div class="product-images">
+                    <div class="main-image">
+                        <img alt="シンプルTシャツ メイン画像">
+                    </div>
+                    <div class="thumbnail-list">
+                        <img alt="サブ画像1" class="thumbnail">
+                        <img alt="サブ画像2" class="thumbnail">
+                    </div>
+                </div>
+
+                <!-- 商品情報セクション -->
+                <div class="product-info">
+                    <h1 class="product-name">シンプルTシャツ</h1>
+                    
+                    <div class="product-brand">
+                        <span class="label">ブランド:</span>
+                        <a>自社ブランド</a>
+                    </div>
+
+                    <div class="product-price-section">
+                        <div class="price-main">
+                            <span class="price-label">販売価格</span>
+                            <span class="price">¥2,000</span>
+                        </div>
+                    </div>
+
+                    <div class="product-description">
+                        シンプルで着回しやすい定番Tシャツです。
+                        高品質な綿素材を使用し、着心地の良さにこだわりました。
+                        カジュアルからビジネスまで、様々なシーンで活躍します。
+                    </div>
+
+                    <!-- 在庫状況 -->
+                    <div class="stock-status">
+                        <i class="fas fa-check"></i> 在庫あり
+                        <!-- 在庫数が0以下のときは以下を表示する -->
+                        <!-- <i class="fas fa-times"></i> 在庫なし -->
+                    </div>
+
+                    <!-- アクションボタン -->
+                    <div class="product-actions">
+                        <div class="quantity-selector">
+                            <div class="quantity-input-group">
+                                <button type="button" class="quantity-btn minus">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <input type="number" 
+                                    id="quantity" 
+                                    name="quantity" 
+                                    value="1" 
+                                    min="1" 
+                                    class="quantity-input">
+                                <button type="button" class="quantity-btn plus">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="add-message"></div>
+                        <button id="addToCart" class="btn-add-cart" data-id="1">
+                            <i class="fas fa-shopping-cart"></i>
+                            カートに追加
+                        </button>
+                        <button id="addToFavorite" class="btn-favorite" data-id="1">
+                            <i class="far fa-heart"></i>
+                            お気に入りに追加
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script th:src="@{/js/customer/shop/product_detail.js}"></script>
+</body>
+</html>

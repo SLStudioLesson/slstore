@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{admin/layouts/base :: layout(~{::title},~{::body/content()})}">
+
+<head>
+    <title>キャンペーン新規登録</title>
+</head>
+
+<body>
+    <div class="content">
+        <h1>キャンペーン登録</h1>
+
+        <form th:action="@{/admin/campaign/store}" th:method="post" th:object="${campaignForm}">
+            <div class="detail-container">
+                <div class="detail-info detail-form">
+                    <h2>基本情報</h2>
+                    <!-- ここにキャンペーン名のエラーメッセージを表示する -->
+                    <div class="form-group">
+                        <label>キャンペーン名</label>
+                        <input type="text" th:field="*{name}">
+                    </div>
+                    <!-- ここに説明のエラーメッセージを表示する -->
+                    <div class="form-group">
+                        <label>説明</label>
+                        <textarea th:field="*{description}"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="detail-container">
+                <div class="detail-info detail-form">
+                    <h2>適用条件</h2>
+                    <!-- ここに最低購入金額のエラーメッセージを表示する -->
+                    <div class="form-group">
+                        <label>最低購入金額</label>
+                        <input type="number" th:field="*{minimunPurchase}">
+                    </div>
+                    <!-- ここに開始日のエラーメッセージを表示する -->
+                    <div class="form-group">
+                        <label>キャンペーン開始日</label>
+                        <input type="date" th:field="*{validFrom}">
+                    </div>
+                    <!-- ここに終了日のエラーメッセージを表示する -->
+                    <div class="form-group">
+                        <label>キャンペーン終了日</label>
+                        <input type="date" th:field="*{validTo}">
+                    </div>
+                    <!-- ここに割り引き率のエラーメッセージを表示する -->
+                    <div class="form-group">
+                        <label>割り引き率(%)</label>
+                        <input type="number" th:field="*{discountPercentage}">
+                    </div>
+                </div>
+            </div>
+            <div class="button-group">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save me-1"></i>登録
+                </button>
+                <a th:href="@{/admin/campaign/index}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left me-1"></i>戻る
+                </a>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

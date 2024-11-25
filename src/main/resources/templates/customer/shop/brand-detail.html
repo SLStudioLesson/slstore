@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{customer/layouts/base :: layout(~{::title},~{::body/content()})}">
+
+<head>
+    <title th:text="${brand.name} + ' - ブランド詳細'"></title>
+</head>
+
+<body>
+    <div class="content">
+        <div class="brand-detail-container">
+            <h1 class="brand-title" th:text="${brand.name}"></h1>
+            <div class="brand-info">
+                <p class="brand-description" th:text="${brand.description}"></p>
+                <div class="favorite-section">
+                    <button class="favorite-btn">お気に入り</button>
+                    <span class="favorite-count">お気に入り追加した人数: <span>0</span>人</span>
+                </div>
+            </div>
+            <a th:href="@{/shop/brand/index}" class="btn btn-secondary back-btn">ブランド一覧に戻る</a>
+        </div>
+    </div>
+</body>
+
+</html>

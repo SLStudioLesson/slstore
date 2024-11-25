@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>login user</title>
+</head>
+
+<body>
+    <p>あなたの名前は<span th:text="${loginPerson.name}"></span></p>
+    <p>あなたの好きな本</p>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>タイトル</th>
+                <th>著者名</th>
+                <th>編集</th>
+                <th>削除</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="book : ${loginPerson.books}">
+                <td th:text="${book.id}"></td>
+                <td th:text="${book.title}"></td>
+                <td th:text="${book.author}"></td>
+                <td>
+                    <a th:href="@{/practice/edit/book/{id}(id=${book.id})}">編集画面へ</a>
+                </td>
+                <td>
+                    <a th:href="@{/practice/delete/book/{id}(id=${book.id})}">削除する</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/practice/book-form}">好きな本を追加する</a>
+</body>
+
+</html>

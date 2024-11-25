@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{customer/layouts/base :: layout(~{::title},~{::body/content()})}">
+<head>
+    <title>保有クーポン一覧</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <h1>保有クーポン一覧</h1>
+        <div class="coupon-list">
+            <!-- 定額クーポン1: 500円引き -->
+            <div class="coupon-item">
+                <div class="coupon-code" th:text="${fixedCoupon500.code}"></div>
+                <div class="coupon-description" th:text="${fixedCoupon500.description}"></div>
+                <div class="coupon-validity">
+                    有効期間: <span th:text="${#temporals.format(fixedCoupon500.validFrom, 'yyyy/MM/dd')}"></span>
+                    から <span th:text="${#temporals.format(fixedCoupon500.validUntil, 'yyyy/MM/dd')}"></span>
+                    <p th:if="${fixedCoupon500MinAmountMessage}" th:text="${fixedCoupon500MinAmountMessage}" class="valid"></p>
+                </div>
+                <div class="coupon-discount" th:text="${fixedCoupon500Text}"></div>
+            </div>
+
+            <!-- 定額クーポン2: 1000円引き -->
+            <div class="coupon-item">
+                <div class="coupon-code" th:text="${fixedCoupon1000.code}"></div>
+                <div class="coupon-description" th:text="${fixedCoupon1000.description}"></div>
+                <div class="coupon-validity">
+                    有効期間: <span th:text="${#temporals.format(fixedCoupon1000.validFrom, 'yyyy/MM/dd')}"></span>
+                    から <span th:text="${#temporals.format(fixedCoupon1000.validUntil, 'yyyy/MM/dd')}"></span>
+                    <p th:if="${fixedCoupon1000MinAmountMessage}" th:text="${fixedCoupon1000MinAmountMessage}" class="valid"></p>
+                </div>
+                <div class="coupon-discount" th:text="${fixedCoupon1000Text}"></div>
+            </div>
+
+            <!-- パーセント割引クーポン1: 10%オフ -->
+            <div class="coupon-item">
+                <div class="coupon-code" th:text="${percentCoupon10.code}"></div>
+                <div class="coupon-description" th:text="${percentCoupon10.description}"></div>
+                <div class="coupon-validity">
+                    有効期間: <span th:text="${#temporals.format(percentCoupon10.validFrom, 'yyyy/MM/dd')}"></span>
+                    から <span th:text="${#temporals.format(percentCoupon10.validUntil, 'yyyy/MM/dd')}"></span>
+                    <p th:if="${percentCoupon10MinAmountMessage}" th:text="${percentCoupon10MinAmountMessage}" class="valid"></p>
+                </div>
+                <div class="coupon-discount" th:text="${percentCoupon10Text}"></div>
+            </div>
+
+            <!-- パーセント割引クーポン2: 20%オフ -->
+            <div class="coupon-item">
+                <div class="coupon-code" th:text="${percentCoupon20.code}"></div>
+                <div class="coupon-description" th:text="${percentCoupon20.description}"></div>
+                <div class="coupon-validity">
+                    有効期間: <span th:text="${#temporals.format(percentCoupon20.validFrom, 'yyyy/MM/dd')}"></span>
+                    から <span th:text="${#temporals.format(percentCoupon20.validUntil, 'yyyy/MM/dd')}"></span>
+                    <p th:if="${percentCoupon20MinAmountMessage}" th:text="${percentCoupon20MinAmountMessage}" class="valid"></p>
+                </div>
+                <div class="coupon-discount" th:text="${percentCoupon20Text}"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
