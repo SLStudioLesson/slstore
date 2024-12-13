@@ -32,12 +32,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="brand-row" th:each="brand : ${brands}">
+                    <tr th:each="brand : ${brands}">
                         <td th:text="${brand.id}" class="brand-id"></td>
                         <td th:text="${brand.name}" class="brand-name"></td>
                         <td th:text="${brand.description}" class="brand-description"></td>
                         <td>
-                            <button class="favorite-btn" th:data-id="${brand.id}">お気に入り</button>
+                            <button class="favorite-btn">お気に入り</button>
                         </td>
                         <td class="favorite-count">お気に入り追加した人数: <span>0</span>人</td>
                         <td>

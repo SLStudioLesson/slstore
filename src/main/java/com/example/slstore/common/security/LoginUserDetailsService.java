@@ -9,11 +9,11 @@ import com.example.slstore.common.entity.User;
 import com.example.slstore.common.repository.UserRepository;
 
 @Service
-public class CustomerDetailsService implements UserDetailsService {
+public class LoginUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
-    public CustomerDetailsService(UserRepository userRepository) {
+    public LoginUserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -21,7 +21,7 @@ public class CustomerDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email)
             .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-        return new CustomerDetails(user);
+        return new LoginUserDetails(user);
     }
     
 }

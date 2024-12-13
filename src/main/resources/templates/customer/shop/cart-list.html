@@ -59,8 +59,6 @@
                                     <i class="fas fa-sync"></i>
                                 </button>
                             </div>
-                            <!-- ここにレスポンスのメッセージを表示する -->
-                            <div class="update-message"></div>
                         </div>
                         <div class="item-subtotal">
                             <p th:text="${'¥' + (item.product.price * item.quantity)}">小計</p>
@@ -102,6 +100,7 @@
     <!-- モーダルのHTML（cart-list.htmlに追加） -->
     <div class="modal" id="update-modal">
         <div class="modal-content">
+            <!-- ここに成功時のメッセージを表示 -->
             <div class="modal-message"></div>
             <div class="modal-buttons">
                 <a th:href="@{/shop/cart/index}" class="btn-reload">

@@ -8,19 +8,19 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.example.slstore.common.security.AdminDetailsService;
-import com.example.slstore.common.security.CustomerDetailsService;
+import com.example.slstore.common.security.LoginUserDetailsService;
 
 @Configuration
 public class AuthenticationConfig {
 
     private final AdminDetailsService adminDetailsService;
 
-    private final CustomerDetailsService customerDetailsService;
+    private final LoginUserDetailsService loginUserDetailsService;
 
     public AuthenticationConfig(AdminDetailsService adminDetailsService,
-            CustomerDetailsService customerDetailsService) {
+            LoginUserDetailsService loginUserDetailsService) {
         this.adminDetailsService = adminDetailsService;
-        this.customerDetailsService = customerDetailsService;
+        this.loginUserDetailsService = loginUserDetailsService;
     }
 
     @Bean
@@ -34,7 +34,7 @@ public class AuthenticationConfig {
     @Bean
     public AuthenticationProvider customerAuthenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(customerDetailsService);
+        provider.setUserDetailsService(loginUserDetailsService);
         provider.setPasswordEncoder(passwordEncoder());
         return provider;
     }

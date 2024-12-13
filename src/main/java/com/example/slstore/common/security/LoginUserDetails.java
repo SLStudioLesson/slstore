@@ -8,11 +8,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.example.slstore.common.entity.User;
 
-public class CustomerDetails implements UserDetails {
+public class LoginUserDetails implements UserDetails {
 
     private User user;
 
-    public CustomerDetails(User user) {
+    public LoginUserDetails(User user) {
         this.user = user;
     }
 
