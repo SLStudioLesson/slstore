@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+    th:replace="~{customer/layouts/base :: layout(~{::title},~{::body/content()})}">
+
+<head>
+    <title>配送状況</title>
+</head>
+
+<body>
+    <h1>配送状況</h1>
+    <main class="delivery-detail-wrapper">
+        <div class="delivery-summary">
+            <div class="delivery-item">
+                <div class="item-info">
+                    <div class="delivery-stat">
+                        <span class="delivery-stat-label">配送会社:</span>
+                        <span></span> <!-- ←ここにshippingCompanyを表示する -->
+                    </div>
+                    <div class="delivery-stat">
+                        <span class="delivery-stat-label">追跡番号:</span>
+                        <span></span> <!-- ←ここにtrackingNumberを表示する -->
+                    </div>
+                    <div class="delivery-stat">
+                        <span class="delivery-stat-label">出荷日:</span>
+                        <span></span> <!-- ←ここにshippingDateを、yyyy年MM月dd日形式で表示する -->
+                    </div>
+                    <div class="delivery-stat">
+                        <span class="delivery-stat-label">お届け予定日:</span>
+                        <span></span> <!-- ←ここにdeliveryDateを、yyyy年MM月dd日形式で表示する -->
+                    </div>
+                    <div class="delivery-stat">
+                        <span class="delivery-stat-label">配送料:</span>
+                        <span></span> <!-- ←ここにshippingFeeを表示する -->
+                    </div>
+                    <div class="delivery-stat">
+                        <span class="delivery-stat-label">配送状況:</span>
+                        <span class="status"></span> <!-- ←ここにdeliveryStatusを表示する -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <link rel="stylesheet" th:href="@{/css/customer/delivery-status.css}">
+</body>
+
+</html>

@@ -23,37 +23,37 @@
                     <i class="fas fa-ticket-alt"></i>
                     <span>クーポン情報</span>
                 </div>
-                <div class="quick-access-item">
+                <a th:href="@{/delivery-status}" class="quick-access-item">
                     <i class="fas fa-truck"></i>
                     <span>配送状況</span>
-                </div>
+                </a>
             </div>
         </section>
         <section class="action-grid">
-            <div class="action-item">
+            <a th:href="@{/order-history}" class="action-item">
                 <i class="fas fa-clipboard-list fa-5x"></i>
                 <span>注文履歴</span>
-            </div>
-            <div class="action-item">
+            </a>
+            <a th:href="@{/favorite-products}" class="action-item">
                 <i class="fas fa-heart fa-5x"></i>
                 <span>お気に入り商品</span>
-            </div>
-            <div class="action-item">
+            </a>
+            <a th:href="@{/return-products}" class="action-item">
                 <i class="fas fa-exchange-alt fa-5x"></i>
                 <span>商品の返品</span>
-            </div>
-            <div class="action-item">
+            </a>
+            <a th:href="@{/mypage/detail}" class="action-item">
                 <i class="fas fa-user-edit fa-5x"></i>
                 <span>お客様情報の確認・変更</span>
-            </div>
-            <div class="action-item">
+            </a>
+            <a th:href="@{/addresses}" class="action-item">
                 <i class="fas fa-map-marker-alt fa-5x"></i>
                 <span>配送先住所の変更・登録</span>
-            </div>
-            <div class="action-item">
+            </a>
+            <a th:href="@{/cards}" class="action-item">
                 <i class="far fa-credit-card fa-5x"></i>
                 <span>クレジットカードの変更・登録</span>
-            </div>
+            </a>
         </section>
     </main>
 </body>

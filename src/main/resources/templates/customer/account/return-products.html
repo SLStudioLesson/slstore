@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+    th:replace="~{customer/layouts/base :: layout(~{::title},~{::body/content()})}">
+
+<head>
+    <title>注文履歴</title>
+</head>
+
+<body>
+    <h1>商品返品</h1>
+
+    <main class="return-detail-wrapper">
+        <div class="return-summary">
+            <div class="return-item">
+                <div class="item-info">
+                    <h3></h3> <!-- ←ここにproductNameを表示する -->
+                    <div class="return-stat">
+                        <span class="return-stat-label">購入日:</span>
+                        <span></span> <!-- ←ここにpurchaseDateを、yyyy年MM月dd日形式で表示する -->
+                    </div>
+                    <div class="return-stat">
+                        <span class="return-stat-label">返品期限日:</span>
+                        <span></span> <!-- ←ここにreturnDueDateを、yyyy年MM月dd日形式で表示する -->
+                    </div>
+                    <div class="return-stat">
+                        <span class="return-stat-label">商品価格:</span>
+                        <span></span> <!-- ←ここにpurchaseAmountを表示する -->
+                    </div>
+                    <div class="return-stat">
+                        <span class="return-stat-label">返品状態:</span>
+                        <span class="status"></span> <!-- ←ここにreturnStatusを表示する -->
+                    </div>
+                </div>
+            </div>
+            <div class="return-actions">
+                <button type="button" class="btn-return">
+                    <i class="fas fa-undo"></i>
+                    返品を申請する
+                </button>
+            </div>
+        </div>
+    </main>
+    
+    <link rel="stylesheet" th:href="@{/css/customer/return-products.css}">
+</body>
+
+</html>

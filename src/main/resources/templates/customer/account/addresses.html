@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+    th:replace="~{customer/layouts/base :: layout(~{::title},~{::body/content()})}">
+
+<head>
+    <title>配送先住所の変更・登録</title>
+</head>
+
+<body>
+    <h1>配送先住所の変更・登録</h1>
+    <main class="addresses-wrapper">
+        <div class="address-list">
+            <div class="address-item">
+                <div class="address-content">
+                    <h3>自宅</h3>
+                    <div class="address-stat">
+                        <span class="address-stat-label">住所:</span>
+                        <span></span> <!-- ←ここにaddress1を表示する -->
+                    </div>
+                    <div class="address-stat">
+                        <span class="address-stat-label">登録日から現在までの日数:</span>
+                        <span>
+                            <span></span> <!-- ←ここにdaysSinceRegistration1を表示する -->
+                            <span>日</span>
+                        </span>
+                    </div>
+                    <div class="address-stat">
+                        <span class="address-stat-label">配送料:</span>
+                        <span>
+                            <span></span> <!-- ←ここにdeliveryFee1を表示する -->
+                            <span>円</span>
+                        </span>
+                    </div>
+                    <div class="address-actions">
+                        <button class="btn-edit">変更</button>
+                        <button class="btn-delete">削除</button>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="address-item">
+                <div class="address-content">
+                    <h3>勤務先</h3>
+                    <div class="address-stat">
+                        <span class="address-stat-label">住所:</span>
+                        <span></span> <!-- ←ここにaddress2を表示する -->
+                    </div>
+                    <div class="address-stat">
+                        <span class="address-stat-label">登録日から現在までの日数:</span>
+                        <span>
+                            <span></span> <!-- ←ここにdaysSinceRegistration2を表示する -->
+                            <span>日</span>
+                        </span>
+                    </div>
+                    <div class="address-stat">
+                        <span class="address-stat-label">配送料:</span>
+                        <span>
+                            <span></span> <!-- ←ここにdeliveryFee2を表示する -->
+                            <span>円</span>
+                        </span>
+                    </div>
+                    <div class="address-actions">
+                        <button class="btn-edit">変更</button>
+                        <button class="btn-delete">削除</button>
+                    </div>
+                </div>
+            </div>
+        </div>        
+        
+        <div class="add-address">
+            <button class="btn-add">新しい住所を登録</button>
+        </div>
+    </main>
+    
+    <link rel="stylesheet" th:href="@{/css/customer/addresses.css}">
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+    th:replace="~{customer/layouts/base :: layout(~{::title},~{::body/content()})}">
+
+<head>
+    <title>お気に入り商品</title>
+</head>
+
+<body>
+    <h1>お気に入り商品</h1>
+
+    <main class="favorites-wrapper">
+        <section class="favorites-list">
+            <div class="favorite-item">
+                <div class="item-image">
+                    <img th:src="@{/product-images/dummy/main_sample.png}" alt="商品画像">
+                </div>
+                <div class="item-info">
+                    <h3></h3> <!-- ←ここにproduct1を表示する -->
+                    <p class="item-price"></p> <!-- ←ここにpriceStr1を表示する -->
+                    <p class="item-points"></p> <!-- ←ここにpointsStr1を表示する -->
+                </div>
+                <div class="item-actions">
+                    <button class="btn-add-cart">カートに追加</button>
+                </div>
+            </div>
+        
+            <div class="favorite-item">
+                <div class="item-image">
+                    <img th:src="@{/product-images/dummy/main_sample.png}" alt="商品画像">
+                </div>
+                <div class="item-info">
+                    <h3></h3> <!-- ←ここにproduct2を表示する -->
+                    <p class="item-price"></p> <!-- ←ここにpriceStr2を表示する -->
+                    <p class="item-points"></p> <!-- ←ここにpointsStr2を表示する -->
+                </div>
+                <div class="item-actions">
+                    <button class="btn-add-cart">カートに追加</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <link rel="stylesheet" th:href="@{/css/customer/favorite-products.css}">
+</body>
+</html>

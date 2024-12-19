@@ -1,0 +1,22 @@
+.guide-content {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+.guide-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+.guide-content ul {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.guide-content li {
+    margin-bottom: 0.5rem;
+}

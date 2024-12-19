@@ -1,0 +1,91 @@
+.order-history-wrapper {
+    width: 100%; /* 画面幅いっぱいに広げる */
+    max-width: 1400px; /* 最大幅を1400pxに設定 */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.order-history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.no-orders {
+    text-align: center;
+    padding: 40px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+}
+
+.order-item {
+    width: 100%; /* 親要素いっぱいに広げる */
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.order-date, .order-number {
+    font-weight: bold;
+}
+
+.order-details {
+    padding: 20px;
+    display: flex;
+    gap: 30px;
+}
+
+.product-list {
+    flex: 3;
+}
+
+.product-item {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.product-image {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.product-info h3 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+}
+
+.order-summary {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.btn-order-detail {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.btn-order-detail:hover {
+    background-color: #357abd;
+}

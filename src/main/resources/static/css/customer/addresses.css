@@ -1,0 +1,89 @@
+.addresses-wrapper {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.address-list {
+    display: grid;
+    gap: 30px;
+}
+
+.address-item {
+    background-color: white;
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.address-content {
+    display: grid;
+    gap: 20px;
+}
+
+.address-content h3 {
+    margin: 0 0 20px 0;
+    font-size: 24px;
+    color: var(--text-color);
+    text-align: center;
+}
+
+.address-stat {
+    display: grid;
+    grid-template-columns: 300px 1fr; /* ラベル部分を広げる */
+    gap: 20px;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.address-stat-label {
+    font-weight: bold;
+    color: var(--dark-gray);
+}
+
+.address-actions {
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.btn-edit, .btn-delete {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-edit {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.add-address {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.btn-add {
+    padding: 12px 24px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-edit:hover, .btn-add:hover {
+    background-color: #357abd;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+}

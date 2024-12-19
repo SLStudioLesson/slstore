@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+    th:replace="~{customer/layouts/base :: layout(~{::title},~{::body/content()})}">
+
+<head>
+    <title>クレジットカードの変更・登録</title>
+</head>
+
+<body>
+    <h1>クレジットカードの変更・登録</h1>
+    <main class="cards-wrapper">
+        <div class="card-list">
+            <div class="card-item">
+                <div class="card-content">
+                    <h3>スタンダードカード</h3>
+                    <div class="card-stat">
+                        <span class="card-stat-label">カード番号:</span>
+                        <span></span> <!-- ←ここにcardNumber1を表示する -->
+                    </div>
+                    <div class="card-stat">
+                        <span class="card-stat-label">有効期限:</span>
+                        <span></span> <!-- ←ここにexpiryDate1を、yyyy年MM月dd日形式で表示する -->
+                    </div>
+                    <div class="card-stat">
+                        <span class="card-stat-label">有効期限まで:</span>
+                        <span>
+                            <span></span> <!-- ←ここにdaysUntilExpiry1を表示する -->
+                            <span>日</span>
+                        </span>
+                    </div>
+                    <div class="card-stat">
+                        <span class="card-stat-label">利用限度額:</span>
+                        <span>
+                            <span></span> <!-- ←ここにlimit1を表示する -->
+                            <span>円</span>
+                        </span>
+                    </div>
+                    <div class="card-stat">
+                        <span class="card-stat-label">利用額:</span>
+                        <span>
+                            <span></span> <!-- ←ここにused1を表示する -->
+                            <span>円</span>
+                        </span>
+                    </div>
+                    <div class="card-stat">
+                        <span class="card-stat-label">残り利用可能額:</span>
+                        <span>
+                            <span></span> <!-- ←ここにremaining1を表示する -->
+                            <span>円</span>
+                        </span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-edit">変更</button>
+                        <button class="btn-delete">削除</button>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="card-item">
+                <div class="card-content">
+                    <h3>ゴールドカード</h3>
+                    <div class="card-stat">
+                        <span class="card-stat-label">カード番号:</span>
+                        <span></span> <!-- ←ここにcardNumber2を表示する -->
+                    </div>
+                    <div class="card-stat">
+                        <span class="card-stat-label">有効期限:</span>
+                        <span></span> <!-- ←ここにexpiryDate2を、yyyy年MM月dd日形式で表示する -->
+                    </div>
+                    <div class="card-stat">
+                        <span class="card-stat-label">有効期限まで:</span>
+                        <span>
+                            <span></span> <!-- ←ここにdaysUntilExpiry2を表示する -->
+                            <span>日</span>
+                        </span>
+                    </div>
+                    <div class="card-stat">
+                        <span class="card-stat-label">利用限度額:</span>
+                        <span>
+                            <span></span> <!-- ←ここにlimit2を表示する -->
+                            <span>円</span>
+                        </span>
+                    </div>
+                    <div class="card-stat">
+                        <span class="card-stat-label">利用額:</span>
+                        <span>
+                            <span></span> <!-- ←ここにused2を表示する -->
+                            <span>円</span>
+                        </span>
+                    </div>
+                    <div class="card-stat">
+                        <span class="card-stat-label">残り利用可能額:</span>
+                        <span>
+                            <span></span> <!-- ←ここにremaining2を表示する -->
+                            <span>円</span>
+                        </span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-edit">変更</button>
+                        <button class="btn-delete">削除</button>
+                    </div>
+                </div>
+            </div>
+        </div>        
+        <div class="add-card">
+            <button class="btn-add">新しいカードを追加</button>
+        </div>
+    </main>
+    
+    <link rel="stylesheet" th:href="@{/css/customer/cards.css}">
+</body>
+
+</html>
