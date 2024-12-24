@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+    th:replace="~{customer/layouts/base :: layout(~{::title},~{::body/content()})}">
+<head>
+    <title>お知らせ一覧 | SLストア</title>
+</head>
+<body>
+    <div class="notices-wrapper">
+        <h1>お知らせ一覧</h1>
+        
+        <section class="notices-list">
+            <div class="notice-item" th:each="notice : ${notices}">
+                <div class="notice-header">
+                    <span class="notice-date" th:text="${#temporals.format(notice.endDate, 'yyyy年MM月dd日')}"></span>
+                </div>
+                <div class="notice-content">
+                    <h3 th:text="${notice.title}"></h3>
+                    <p th:text="${notice.content}"></p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <link rel="stylesheet" th:href="@{/css/customer/notices.css}">
+</body>
+</html>

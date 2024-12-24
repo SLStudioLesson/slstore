@@ -1412,3 +1412,24 @@ label {
 .error-help a:hover {
   text-decoration: underline;
 }
+
+.notification-icon {
+  position: relative;
+  font-size: 24px;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #ff4444;
+  color: white;
+  font-size: 12px;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+}
