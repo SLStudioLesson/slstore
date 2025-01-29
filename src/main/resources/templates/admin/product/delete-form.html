@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{admin/layouts/base :: layout(~{::title},~{::body/content()})}">
+
+<head>
+    <title>商品削除</title>
+</head>
+
+<body>
+
+    <div class="content">
+        <h1>商品削除</h1>
+        <div class="form-container">
+            <form>
+                <!-- 商品ID -->
+                <input type="hidden">
+
+                <div class="form-group">
+                    <label>商品名</label>
+                    <input type="text" readonly>
+                </div>
+                <div class="form-group">
+                    <label>価格</label>
+                    <input type="text" readonly>
+                </div>
+                <div class="form-group">
+                    <button type="submit">削除</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

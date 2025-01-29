@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{admin/layouts/base :: layout(~{::title},~{::body/content()})}">
+
+<head>
+    <title>プロモーションコード登録</title>
+</head>
+
+<body>
+    <div class="content">
+        <h1>プロモーションコード登録</h1>
+
+        <div th:if="${errorMessage}" class="alert alert-danger">
+            <p th:text="${errorMessage}"></p>
+        </div>
+
+        <form>
+            <div class="detail-container">
+                <div class="detail-info detail-form">
+                    <h2>基本情報</h2>
+                    <div class="form-group">
+                        <label for="code">プロモーションコード</label>
+                        <input type="text" class="form-control" id="code" maxlength="50">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">説明</label>
+                        <textarea class="form-control" id="description" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-container">
+                <div class="detail-info detail-form">
+                    <h2>割引情報</h2>
+                    <div class="form-group">
+                        <label for="discountType">割引タイプ</label>
+                        <select class="form-control" id="discountType">
+                            <option value="1">割引率</option>
+                            <option value="2">固定額</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="discountValue">割引値</label>
+                        <input type="number" class="form-control" id="discountValue" min="0">
+                        <small class="form-text text-muted">割引率の場合は1-100の値を、固定額の場合は金額を入力してください。</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-container">
+                <div class="detail-info detail-form">
+                    <h2>期間設定</h2>
+                    <div class="form-group">
+                        <label for="startDate">開始日</label>
+                        <input type="date" class="form-control" id="startDate">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="endDate">終了日</label>
+                        <input type="date" class="form-control" id="endDate">
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save me-1"></i>登録
+                </button>
+                <a th:href="@{/admin/promotions/index}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left me-1"></i>戻る
+                </a>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
