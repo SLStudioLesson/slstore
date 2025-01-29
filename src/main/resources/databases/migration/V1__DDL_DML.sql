@@ -552,3 +552,97 @@ INSERT INTO campaign_conditions (campaign_id, minimun_purchase, valid_from, vali
 (1, 10000, '2024-12-01', '2024-12-31', 10),
 (2, 20000, '2024-04-01', '2024-04-30', 20),
 (3, 30000, '2024-08-01', '2024-08-31', 30);
+
+CREATE TABLE faqs (
+    id SERIAL PRIMARY KEY,
+    category INT NOT NULL,
+    title VARCHAR(200) NOT NULL,
+    content TEXT NOT NULL,
+    published_at DATE NOT NULL,
+    is_deleted INTEGER DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO faqs (category, title, content, published_at) VALUES
+-- カテゴリー1: 商品・配送について
+(1, '返品・交換について', '商品到着後7日以内であれば、返品・交換が可能です。ただし、着用済みの商品や破損した商品は対象外となります。', '2025-01-01'),
+(1, '配送料について', '1回のご注文が5,000円以上の場合、配送料は無料となります。5,000円未満の場合は、全国一律500円の配送料を頂戴しております。', '2025-01-01'),
+(1, '在庫状況について', '商品ページに表示される在庫数は、リアルタイムの在庫を反映しています。「在庫切れ」の場合は入荷お知らせメールにご登録いただけます。', '2025-01-01'),
+
+-- カテゴリー2: 会員登録・ログインについて
+(2, '会員登録の方法', '画面右上の「新規会員登録」ボタンから、必要事項を入力して登録することができます。メールアドレスの認証が必要となります。', '2025-01-01'),
+(2, 'パスワードを忘れた場合', 'ログイン画面の「パスワードをお忘れの方」から、登録メールアドレスを入力することでパスワードの再設定が可能です。', '2025-01-01'),
+(2, '会員情報の変更方法', 'マイページの「会員情報編集」から、登録情報の変更が可能です。メールアドレスの変更には再認証が必要となります。', '2025-01-01'),
+
+-- カテゴリー3: ポイント・クーポンについて
+(3, 'ポイントの有効期限', '獲得したポイントの有効期限は、獲得日から1年間となります。期限切れ前にご利用ください。', '2025-01-01'),
+(3, 'ポイントの付与タイミング', '商品発送後、7日以内にポイントが付与されます。キャンペーン期間中は付与までに14日程度かかる場合があります。', '2025-01-01'),
+(3, 'クーポンの使用方法', 'お買い物かごの「クーポンコードを入力」欄に、発行されたコードを入力してください。複数のクーポンの併用はできません。', '2025-01-01');
+
+CREATE TABLE promotion_codes (
+    id SERIAL PRIMARY KEY,
+    code VARCHAR(50) NOT NULL,
+    description TEXT,
+    discount_type INT NOT NULL,
+    discount_value INT NOT NULL,
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    is_deleted INTEGER DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO promotion_codes
+(code, description, discount_type, discount_value, start_date, end_date) VALUES
+('WELCOME10', '新規会員様向けの10%割引クーポンです。', 1, 10, '2024-01-01', '2026-12-31'),
+('SUMMER500', '夏季キャンペーン500円割引クーポンです。', 2, 500, '2024-07-01', '2024-08-31'),
+('WINTER2025', '2025年冬季限定20%割引クーポンです。', 1, 20, '2025-01-01', '2025-02-28');
+
+CREATE TABLE affiliates (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    is_deleted INTEGER DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE affiliates_details (
+    id SERIAL PRIMARY KEY,
+    affiliates_id INT REFERENCES affiliates(id),
+    email VARCHAR(50) NOT NULL,
+    referral_code VARCHAR(50) NOT NULL,
+    commission_rate INT NOT NULL CHECK (commission_rate BETWEEN 1 AND 100),
+    media INT NOT NULL CHECK (media BETWEEN 1 AND 4),
+    contract_start_date DATE NOT NULL,
+    contract_end_date DATE,
+    is_deleted INTEGER DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO affiliates (name) VALUES
+('HEKAKIN_TV'),
+('綿鍋尚実'),
+('OolongMask');
+
+INSERT INTO affiliates_details
+(affiliates_id, email, referral_code, commission_rate, media, contract_start_date, contract_end_date) VALUES
+(1, 'hekakin@example.com', 'HEKAKIN10', 10, 1, '2024-01-01', '2026-12-31'),
+(2, 'watanabe@example.com', 'WATANABE15', 15, 2, '2024-01-01', '2026-12-31'),
+(3, 'oolong@example.com', 'OOLONG20', 20, 3, '2024-01-01', '2026-12-31');
+
+CREATE TABLE reviews (
+    id SERIAL PRIMARY KEY,
+    product_id INT REFERENCES products(id),
+    rating INT NOT NULL CHECK (rating BETWEEN 1 AND 5),
+    comment TEXT,
+    is_deleted INTEGER DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO reviews (product_id, rating, comment, is_deleted) VALUES
+(1, 5, 'とてもよかったです。', 0),
+(1, 4, 'まあまあでした。', 0),
+(1, 3, '普通でした。', 0);

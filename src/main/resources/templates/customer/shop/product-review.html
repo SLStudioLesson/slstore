@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+    th:replace="~{customer/layouts/base :: layout(~{::title},~{::body/content()})}">
+
+<head>
+    <title>商品レビュー</title>
+</head>
+
+<body>
+    <div class="product-detail-wrapper">
+        <!-- パンくずリスト -->
+        <nav class="breadcrumb">
+            <ol>
+                <li><a href="/">ホーム</a></li>
+                <li><a href="/shop/product/index">商品一覧</a></li>
+                <li>シンプルTシャツ</li>
+                <li>レビュー</li>
+            </ol>
+        </nav>
+
+        <div class="product-detail-container">
+            <!-- 商品メイン情報 -->
+            <div class="product-main">
+                <!-- 商品画像セクション -->
+                <div class="product-images">
+                    <div class="main-image">
+                        <img alt="シンプルTシャツ メイン画像">
+                    </div>
+                    <div class="thumbnail-list">
+                        <img alt="サブ画像1" class="thumbnail">
+                        <img alt="サブ画像2" class="thumbnail">
+                    </div>
+                </div>
+    
+                <!-- 商品情報セクション -->
+                <div class="product-info">
+                    <h1 class="product-name">シンプルTシャツ</h1>
+                    
+                    <div class="product-brand">
+                        <span class="label">ブランド:</span>
+                        <a href="/shop/brand/{id}">自社ブランド</a>
+                    </div>
+
+                    <div class="product-price-section">
+                        <div class="price-main">
+                            <span class="price-label">販売価格</span>
+                            <span class="price">¥2,000</span>
+                        </div>
+                    </div>
+
+                    <div class="product-description">
+                        シンプルで着回しやすい定番Tシャツです。
+                        高品質な綿素材を使用し、着心地の良さにこだわりました。
+                        カジュアルからビジネスまで、様々なシーンで活躍します。
+                    </div>
+                    <!-- レビュー投稿フォーム -->
+                    <div class="review-section">
+                        <form action="/shop/product/review" method="post" class="review-form">
+                            <input type="hidden" name="productId" value="1" />
+                            
+                            <div class="form-group">
+                                <label class="form-label">評価</label>
+                                <select class="form-control rating-select" name="rating">
+                                    <option value="5">★★★★★</option>
+                                    <option value="4">★★★★</option>
+                                    <option value="3">★★★</option>
+                                    <option value="2">★★</option>
+                                    <option value="1">★</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">コメント</label>
+                                <textarea class="form-control comment-textarea" name="comment" rows="3"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-paper-plane"></i>
+                                投稿する
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- レビュー一覧 -->
+        <div class="reviews-section">
+            <h2 class="section-title">レビュー一覧</h2>
+            <table class="review-table">
+                <thead>
+                    <tr>
+                        <th>評価</th>
+                        <th>コメント</th>
+                        <th>投稿日時</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="review-rating" text="★5">評価</td>
+                        <td class="review-comment" text="とてもよかったです。">コメント</td>
+                        <td class="review-date" text="2030/01/01 12:00">投稿日時</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
